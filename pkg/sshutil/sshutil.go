@@ -185,7 +185,10 @@ func CommonOpts(useDotSSH bool) ([]string, error) {
 		"StrictHostKeyChecking=no",
 		"UserKnownHostsFile=/dev/null",
 		"NoHostAuthenticationForLocalhost=yes",
-		"GSSAPIAuthentication=no",
+		// Since NixOS 24.11, omit GSSAPI support by default
+		// And OpenSSH does not return the compiled flags, we can't extract the information from ssh command
+		// See https://github.com/kachick/dotfiles/issues/950 for detail
+		// "GSSAPIAuthentication=no",
 		"PreferredAuthentications=publickey",
 		"Compression=no",
 		"BatchMode=yes",
